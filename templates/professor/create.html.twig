@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="row mb-2 mt-2" style="padding: 20px;">
+        <div class="col-lg-12">
+            <h3 class="one text-center">Criar Professor</h3>
+            <a class="btn btn-secondary float-right" href="{{ path('materias_list') }}">Voltar</a>
+        </div>
+    </div>
+        <div class="row" style="padding: 20px;">
+        <div class="col-lg-12">
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

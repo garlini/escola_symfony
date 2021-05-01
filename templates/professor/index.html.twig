@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <div class="row mb-2 mt-2" style="padding: 20px;">
+    <div class="col-lg-12">
+        <h3 class="one text-center">Professores</h3>
+        <a class="btn btn-primary float-right" href="{{ path('professores_create') }}">Novo</a>
+    </div>
+</div>
+    
+    
+<table class="table" style="padding: 20px;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for professor in professores %}
+        <tr>
+          <th scope="row">{{ professor.id }}</th>
+          <td>{{ professor.nome }}</td>
+          <td><a href="{{ path('professores_update', {id: professor.id}) }}">editar</a></td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="2" class="text-center">Nenhum professor entrado.</td>
+        </tr>
+    {% endfor  %}
+  </tbody>
+</table>
+{% endblock %}

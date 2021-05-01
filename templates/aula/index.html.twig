@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    
+    <div class="row mb-2 mt-2" style="padding: 20px;">
+    <div class="col-lg-12">
+        <h3 class="one text-center">Aulas</h3>
+    </div>
+</div>
+    
+    
+<table class="table" style="padding: 20px;">
+  <thead>
+    <tr>
+      <th scope="col">Dia Semana</th>
+      <th scope="col">Matérias</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for dia, label in dias %}
+        <tr>
+          <td scope="row">{{ label }}</td>
+          <td scope="row">{{ diasMaterias[dia]|default([])|join(', ') }}</td>
+          <td scope="row"><a href="{{ path('aulas_edit', {diaSemana: dia}) }}">Editar</a></td>
+        </tr>
+        {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

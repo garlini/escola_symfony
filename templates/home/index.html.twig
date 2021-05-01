@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+ 
+<h3 class="text-center" style="margin: 20px 0;">Aulas Cadastradas</h3>
+  
+<table class="table" style="padding: 20px;">
+  <thead>
+    <tr>
+      <th scope="col">Dia Semana</th>
+      <th scope="col">Matérias</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for dia, label in dias %}
+        <tr>
+          <td scope="row">{{ label }}</td>
+          <td scope="row">{{ diasMaterias[dia]|default([])|join(', ') }}</td>
+          <td scope="row"><a href="{{ path('aulas_edit', {diaSemana: dia}) }}">Editar</a></td>
+        </tr>
+        {% endfor %}
+  </tbody>
+</table>
+ 
+<h3 class="text-center" style="margin: 20px 0;">Matérias</h3>
+    
+<table class="table" style="padding: 20px;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Professor Principal</th>
+      <th scope="col">Professor Substituto</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for materia in materias %}
+        <tr>
+          <th scope="row">{{ materia.id }}</th>
+          
+          <td>{{ materia.nome }}</td>
+          <td>{{ materia.professorPrincipal ? materia.professorPrincipal.nome : '' }}</td>
+          <td>{{ materia.professorSubstituto ? materia.professorSubstituto.nome : '' }}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="2" class="text-center">Nenhuma matéria entrada.</td>
+        </tr>
+    {% endfor  %}
+  </tbody>
+</table>
+{% endblock %}
